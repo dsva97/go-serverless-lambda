@@ -1,0 +1,20 @@
+service: goserverlesslambda
+provider:
+  name: aws
+  runtime: go1.x
+  region: eu-west-2
+plugins:
+  - serverless-offline
+package:
+  patterns:
+    - "!./**"
+    - "./bin/**"
+functions:
+  goserverlesslambda:
+    handler: bin/goserverlesslambda
+    events:
+      - http:
+          path: /
+          method: post
+          cors: true
+          private: false
